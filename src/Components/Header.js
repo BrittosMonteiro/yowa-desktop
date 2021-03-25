@@ -3,6 +3,7 @@ import '../css/header.css'
 import logo from '../assets/icon/menu.png'
 import { Link } from 'react-router-dom';
 import {WiDayCloudy} from 'react-icons/wi'
+import { useAuth } from '../contexts/AuthContext'
 
 function  Header(){
     
@@ -12,6 +13,8 @@ function  Header(){
 
     let w = window.innerWidth
 
+    const { logout, currentUser } = useAuth()
+    const userName = currentUser.email
     const [temperatura, setTemperatura] = useState('')
 
     function kelvinToCelcius(k) {
@@ -64,6 +67,10 @@ function  Header(){
         }
     }
 
+    function handleLogout(){
+        logout()
+    }
+
     return(
     <header className="header">
         <nav className="suspended-menu" id="suspended-menu" onMouseLeave={() => closeSuspendedMenu()}>
@@ -104,7 +111,7 @@ function  Header(){
             <img src={logo} alt="" title="" id="logo" onClick={() => openSuspendeMenu()} onMouseOver={() => openSuspendeMenu()} />
         </div>
         <div className="temperatura">{temperatura}ºC&nbsp;<WiDayCloudy style={{color: '#eee', fontSize: '32px'}}/></div>
-        <span className="user-header">Olá, {'Lucas'}</span>
+        <span className="user-header" onClick={logout}>Olá, {userName}</span>
     </header>
     )
 }

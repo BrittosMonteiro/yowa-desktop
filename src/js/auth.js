@@ -1,4 +1,4 @@
 export const isAuthenticated = () => (
-    // false,
-    true
+    false
+    // true
 );
