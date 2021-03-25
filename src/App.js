@@ -6,13 +6,16 @@ import {
 import Routes from "./Router/routes";
 
 import './App.css';
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Routes />
-      </Switch>
+      <AuthProvider>
+        <Switch>
+          <Routes />
+        </Switch>
+      </AuthProvider>
     </Router>
   );
 }
