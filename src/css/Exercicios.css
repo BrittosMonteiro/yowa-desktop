@@ -1,0 +1,30 @@
+.exercise-list, .exercise-list-item{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.exercise-list-item{
+    border-left: 3px solid var(--bordo);
+    padding: 7px;
+    margin-bottom: 10px;
+    border-radius: 0 2px 2px 0;
+    transition: all 0.4s;
+}
+.exercise-list-item:hover{
+    border-color: #eee;
+    background-color: var(--bordo);
+}
+.exercise-list-item-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+}
+.exercise-list-item-input{
+    padding: 5px 0;
+    background-color: transparent;
+    color: #eee;
+}
+.exercise-list-item-input::placeholder{
+    color: #aaa;
+}

@@ -1,0 +1,55 @@
+.list-activity{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.list-activity-item{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 7px 0 7px 7px;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-left: 3px solid var(--bordo);
+    margin-bottom: 10px;
+    transition: all 0.4s;
+    border-radius: 0 2px 2px 0;
+}
+.list-activity-item:hover{
+    background-color: var(--bordo);
+    border-color: #eee;
+    padding-right: 7px;
+}
+.btn-action{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.list-activity-item-link{
+    color: #eee;
+    align-items: center;
+    justify-content: center;
+}
+.btn-criar-treino{
+    display: flex;
+    width: 120px;
+    justify-content: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+.novoTreino{
+    display: flex;
+    width: 350px;
+    padding: 3px;
+    background-color: transparent;
+    border-bottom: 3px solid var(--bordo);
+    color: #eee;
+    font-weight: 600;
+}

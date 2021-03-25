@@ -1,0 +1,31 @@
+.view-activity-list, .view-activity-item-title{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.view-activity-item{
+    align-items: center;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    padding: 7px;
+    border-left: 3px solid var(--bordo);
+    margin-bottom: 10px;
+    transition: all 0.4s;
+    border-radius: 0 2px 2px 0;
+}
+.view-activity-item:hover{
+    background-color: var(--bordo);
+    border-color: #eee;
+}
+.view-activity-item-header{
+    font-size: 15px;
+    font-weight: 600;
+}
+.view-activity-item-sub{
+    font-size: 13px;
+}
+
+.btn-start-activity{
+    width: 180px;
+}

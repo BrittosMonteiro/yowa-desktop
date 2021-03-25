@@ -1,0 +1,78 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 15px;
+    background-color: var(--bordo);
+}
+.img-area{
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.user-header{
+    font-weight: 600;
+    color: #eee;
+}
+
+.suspended-menu{
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--bordo);
+    z-index: 1;
+    padding: 15px
+}
+.suspended-menu-list{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--bordo);
+}
+.suspended-menu-close{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 10px;
+    color: #eee;
+    font-weight: 500;
+    font-size: 20px;
+    align-items: center;
+    justify-content: flex-end;
+}
+.suspended-menu-list-item{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    color: #eee;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 2px;
+}
+.suspended-menu-list-item:first-of-type{
+    margin-top: 0;
+}
+.suspended-menu-list-item:last-of-type{
+    margin-bottom: 0;
+}
+.suspended-menu-list-item:hover{
+    background-color: var(--dark-blue);
+}
+
+
+.temperatura{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    color: #eee;
+}

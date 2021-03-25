@@ -1,0 +1,22 @@
+.list-execute{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.list-execute-item{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 7px;
+    border-left: 3px solid var(--bordo);
+    margin-bottom: 10px;
+    font-size: 15px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0 2px 2px 0;
+    transition: all 0.4s;
+}
+.list-execute-item:hover{
+    border-color: #eee;
+    background-color: var(--bordo);
+}

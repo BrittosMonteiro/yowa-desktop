@@ -1,0 +1,30 @@
+.content-subtitle{
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+.section-block .content-subtitle{
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.list-activities{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.list-activities-item{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 7px 7px;
+    border-left: 3px solid var(--bordo);
+    margin: 0 0 10px 0;
+    transition: all 0.4s;
+    border-radius: 0 2px 2px 0;
+}
+.list-activities-item:hover{
+    background-color: var(--bordo);
+    border-color: #eee;
+}

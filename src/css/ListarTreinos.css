@@ -1,0 +1,54 @@
+.nav-listar-treino, .listar-treino-list{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.listar-list-item{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-left: 3px solid var(--bordo);
+    padding: 10px;
+    margin-bottom: 15px;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-radius: 0 2px 2px 0;
+    transition: all 0.5s;
+}
+.listar-list-item-sub{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    /* background-color: #eee; */
+    margin: 5px 0;
+    font-size: 15px;
+}
+.listar-list-item-sub:first-of-type{
+    margin-top: 0;
+}
+.listar-list-item-sub:last-of-type{
+    margin-bottom: 0;
+}
+.activity{
+    display: flex;
+    flex-direction: column;
+}
+.activity-location{
+    font-size: 13px;
+}
+.summary{
+    display: flex;
+    flex-direction: column;
+}
+.summary-status{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.listar-list-item:hover{
+    background-color: var(--bordo);
+    border-color: #eee;
+}
+.listar-treino-list a{
+    color: #eee
+}

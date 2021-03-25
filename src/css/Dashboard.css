@@ -1,0 +1,46 @@
+.section-block{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 500px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+.board{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 240px;
+    padding: 10px;
+    background-color: var(--bluer);
+    border-radius: 2px;
+    margin: 10px 0 10px;
+}
+.board-title{
+    font-size: 16px;
+}
+.board-line{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 10px 0 0 0;
+}
+.line-content{
+    font-size: 15px;
+}
+
+@media screen and (max-width: 1075px){
+    .section{
+        width: 100%;
+        max-width: 500px;
+        margin: 15px auto;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 565px){
+    .board{
+        width: 100%;
+        max-width: 100%;
+    }
+}
