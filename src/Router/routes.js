@@ -16,6 +16,7 @@ import Exercicios from '../Components/Exercicios'
 import Atividade from '../Components/Atividade'
 import Login from '../Components/Login'
 import Signup from '../Components/Signup'
+import PassRecovery from "../Components/PassRecovery";
 
 class Routes extends React.Component{
     render(){
@@ -31,6 +32,7 @@ class Routes extends React.Component{
           <PrivateRoute path="/exercicios/:id_atividade/:nome_atividade" component={Exercicios}/>
           <PrivateRoute path="/atividade/:id_atividade/:nome_atividade" component={Atividade}/>
           <PublicRoute path="/login" component={Login}/>
+          <PublicRoute path="/password-recovery" component={PassRecovery}/>
           <PublicRoute path="/signup" component={Signup}/>
         </>
       )

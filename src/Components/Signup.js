@@ -60,7 +60,7 @@ export default function Signup() {
                 </div>
                 <div className="form-label">
                     <label htmlFor="name">Nome</label>
-                    <input type="text" name="name" id="name" ref={nameRef} className="form-input" required autoFocus={true} />
+                    <input type="text" name="name" id="name" ref={nameRef} className="form-input" required />
                 </div>
                 <div className="form-label">
                     <label htmlFor="sname">Sobrenome</label>

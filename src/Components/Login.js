@@ -37,13 +37,12 @@ function Login() {
         <>
             <form onSubmit={handleSubmit} name="form-login" id="form-login" className="form-login">
                 <h1 className="form-title">Acessar minha conta</h1>
-                {/* {JSON.stringify(currentUser)} */}
                 <div className="error-message" id="error-message" style={{display: display}}>
                     {error}
                 </div>
                 <div className="form-label">
                     <label htmlFor="username">Email</label>
-                    <input type="text" name="username" id="username" ref={userRef} className="form-input" required autoFocus={true} />
+                    <input type="text" name="username" id="username" ref={userRef} className="form-input" required />
                 </div>
                 <div className="form-label">
                     <label htmlFor="password">Senha</label>

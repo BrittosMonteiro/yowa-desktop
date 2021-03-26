@@ -1,11 +1,12 @@
 import React from 'react';
 import '../css/header.css'
-import logo from '../assets/icon/menu_bordo.png'
+import logo_branco from '../assets/icon/menu.png'
+import logo_bordo from '../assets/icon/menu_bordo.png'
 
 function  HeaderPublic(){
     return(
         <header className="headerPublic">
-            <img src={logo} alt="" title="" id="logo" />
+            <img src={logo_branco} alt="" title="" id="logo" />
         </header>
     )
 }
