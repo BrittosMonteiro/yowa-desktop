@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import firebase from '../js/Firestore'
+import { useAuth } from '../contexts/AuthContext'
 import '../css/default.css'
 import '../css/Perfil.css'
 
 function Perfil() {
 
+    const { currentUser } = useAuth()
+    const uid = currentUser.uid
+
     const usuario = firebase.firestore().collection('usuario')
-    const idUsuario = 'yx8SrqgeoHKg7rDw6m6r'
 
     const [name, setName] = useState('')
     const [sname, setSname] = useState('')
@@ -15,7 +18,7 @@ function Perfil() {
 
     async function getUser(){
         await usuario
-        .doc(idUsuario)
+        .doc(uid)
         .get()
         .then((doc) => {
             if(doc.exists){
@@ -29,7 +32,7 @@ function Perfil() {
 
     async function updateUser(){
         await usuario
-        .doc(idUsuario)
+        .doc(uid)
         .update({
             nome_usuario: name,
             snome_usuario: sname,

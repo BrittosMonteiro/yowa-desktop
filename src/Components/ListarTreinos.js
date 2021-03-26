@@ -6,17 +6,21 @@ import {MdDoneAll} from 'react-icons/md'
 import {MdClear} from 'react-icons/md'
 import {MdRemoveRedEye} from 'react-icons/md'
 import {RiDeleteBin5Fill} from 'react-icons/ri'
+import { useAuth } from '../contexts/AuthContext'
 
 function ListarTreinos(props) {
 
     const [historico, setHistorico] = useState([])
     const [historicoLimitado, setHistoricoLimitado] = useState([])
+    const { currentUser } = useAuth()
+    const uid = currentUser.uid
 
     const listaHistorico = firebase.firestore().collection('historico')
     
     async function getLimitedTreinos(){
         await listaHistorico
-        .orderBy('createdAt', 'desc')
+        // .orderBy('createdAt', 'desc')
+        .where('key_usuario', '==', uid)
         .limit(3)
         .onSnapshot((querySnapshot) => {
             const listaHistorico = [];
@@ -33,7 +37,8 @@ function ListarTreinos(props) {
 
     async function getAllTreinos(){
         await listaHistorico
-        .orderBy('createdAt', 'desc')
+        // .orderBy('createdAt', 'desc')
+        .where('key_usuario', '==', uid)
         .onSnapshot((querySnapshot) => {
             const listaHistorico = [];
 

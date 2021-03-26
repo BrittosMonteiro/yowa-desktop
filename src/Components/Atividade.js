@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router';
 import firebase from '../js/Firestore'
+import { useAuth } from '../contexts/AuthContext'
 import '../css/Atividade.css'
 import {IoCheckmarkDoneSharp} from 'react-icons/io5'
 import {MdClear} from 'react-icons/md'
@@ -8,8 +9,12 @@ import {MdClear} from 'react-icons/md'
 function Atividade(){
 
     let {id_atividade, nome_atividade} = useParams();
-    const history = useHistory()
     document.title = 'Yowa! | Executando - ' + nome_atividade
+    
+    const { currentUser } = useAuth()
+    const uid = currentUser.uid
+    
+    const history = useHistory()
 
     const descricao = firebase.firestore().collection('descricao')
     const historico = firebase.firestore().collection('historico')
@@ -20,6 +25,7 @@ function Atividade(){
     const [itensFeitos, setItensFeitos] = useState([])
     const listaFeitos = []
     const [executar, setExecutar] = useState(false);
+    
     const [segundo, setSegundo] = useState(0)
     const [minuto, setMinuto] = useState(0)
     const [hora, setHora] = useState(0)
@@ -80,7 +86,7 @@ function Atividade(){
             local_date: new Date().toLocaleDateString('pt-BR'),
             local_time: new Date().toLocaleTimeString('pt-BR'),
             finalizados: listaFeitos,
-            key_usuario: 'yx8SrqgeoHKg7rDw6m6r',
+            key_usuario: uid,
             local: 'Local teste',
             nome_treino: nome_atividade,
             pendentes: listaPendentes,
@@ -162,7 +168,7 @@ function Atividade(){
             <section className="section-block column">
                 {itensPendentes.length > 0 ?
                     <>
-                        <span class="content-subtitle">Pendentes</span>
+                        <span className="content-subtitle">Pendentes</span>
                         <ol className="list-execute">
                         {itensPendentes.map((item) => (
                             <li className="list-execute-item" key={item.key}>

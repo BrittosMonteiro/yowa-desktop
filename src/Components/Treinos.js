@@ -3,6 +3,7 @@ import firebase from '../js/Firestore'
 import {Link} from 'react-router-dom'
 import '../css/default.css'
 import '../css/Treinos.css'
+import { useAuth } from '../contexts/AuthContext'
 
 import {MdRemoveRedEye} from 'react-icons/md'
 import {RiDeleteBin5Fill} from 'react-icons/ri'
@@ -11,12 +12,15 @@ function Treinos(){
 
     const [treinos, setTreinos] = useState([])
     const [nomeTreino, setNomeTreino] = useState('')
+    const { currentUser } = useAuth()
+    const uid = currentUser.uid
     
     const listarTreinos = firebase.firestore().collection('treino')
 
     function getTreinos() {
         listarTreinos
-        .orderBy('createdAt', 'desc')
+        // .orderBy('createdAt', 'desc')
+        .where('key_usuario', '==', uid)
         .onSnapshot((querySnapshot) => {
             const listaTreinos = [];
 
@@ -42,7 +46,7 @@ function Treinos(){
             await listarTreinos.add({
             nome_treino: nomeTreino,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-            key_usuario: 'yx8SrqgeoHKg7rDw6m6r',
+            key_usuario: uid,
             });
             setNomeTreino('')
         }

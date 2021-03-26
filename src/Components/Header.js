@@ -4,18 +4,30 @@ import logo from '../assets/icon/menu.png'
 import { Link } from 'react-router-dom';
 import {WiDayCloudy} from 'react-icons/wi'
 import { useAuth } from '../contexts/AuthContext'
+import firebase from '../js/Firestore'
 
 function  Header(){
     
-    let lon;
-    let lat;
-    let city, max, min, feel, now, humi, mainDesc
-
+    let lon, lat, now, city, max, min, feel, humi, mainDesc
     let w = window.innerWidth
 
     const { logout, currentUser } = useAuth()
-    const userName = currentUser.email
+    const uid = currentUser.uid
     const [temperatura, setTemperatura] = useState('')
+    const [username, setUsername] = useState()
+
+    const usuarioDoc = firebase.firestore().collection('usuario')
+
+    async function getUserInformation(){
+        await usuarioDoc
+        .doc(uid)
+        .get()
+        .then((doc) => {
+            if(doc.exists){
+                setUsername(doc.data().user_usuario)
+            }
+        })
+    }
 
     function kelvinToCelcius(k) {
         let c = k - 273.15
@@ -38,21 +50,22 @@ function  Header(){
             })
             .then((data) => {
 
-                city = data.name
+                // city = data.name
                 
-                max = data.main.temp_max
-                min = data.main.temp_min
+                // max = data.main.temp_max
+                // min = data.main.temp_min
                 now = data.main.feels_like
-                feel = data.main.temp
-                humi = data.main.humidity
-                mainDesc = data.weather[0].description
+                // feel = data.main.temp
+                // humi = data.main.humidity
+                // mainDesc = data.weather[0].description
 
                 setTemperatura(kelvinToCelcius(now))
             })
         }
     }
     useEffect(() => {
-        weather();
+        weather()
+        getUserInformation()
     }, [])
 
     function closeSuspendedMenu(){
@@ -111,7 +124,7 @@ function  Header(){
             <img src={logo} alt="" title="" id="logo" onClick={() => openSuspendeMenu()} onMouseOver={() => openSuspendeMenu()} />
         </div>
         <div className="temperatura">{temperatura}ºC&nbsp;<WiDayCloudy style={{color: '#eee', fontSize: '32px'}}/></div>
-        <span className="user-header" onClick={logout}>Olá, {userName}</span>
+        <span className="user-header" onClick={logout}>Olá, {username}</span>
     </header>
     )
 }
