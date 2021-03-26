@@ -4,6 +4,9 @@ import { useAuth } from '../contexts/AuthContext'
 
 export default function Signup() {
 
+    const nameRef = useRef()
+    const snameRef = useRef()
+    const usernameRef = useRef()
     const emailRef = useRef()
     const passwRef = useRef()
     const confirmPasswRef = useRef()
@@ -29,7 +32,12 @@ export default function Signup() {
         try{
             setError('')
             setLoading(true)
-            await signup(emailRef.current.value, passwRef.current.value)
+            await signup(
+                nameRef.current.value,
+                snameRef.current.value,
+                usernameRef.current.value,
+                emailRef.current.value,
+                passwRef.current.value)
             .then(() => {
                 history.push('/login')
             })
@@ -51,8 +59,20 @@ export default function Signup() {
                     {error}
                 </div>
                 <div className="form-label">
-                    <label htmlFor="username">Email</label>
-                    <input type="text" name="username" id="username" ref={emailRef} className="form-input" required autoFocus={true} />
+                    <label htmlFor="name">Nome</label>
+                    <input type="text" name="name" id="name" ref={nameRef} className="form-input" required autoFocus={true} />
+                </div>
+                <div className="form-label">
+                    <label htmlFor="sname">Sobrenome</label>
+                    <input type="text" name="sname" id="sname" ref={snameRef} className="form-input" required />
+                </div>
+                <div className="form-label">
+                    <label htmlFor="username">Usuário</label>
+                    <input type="text" name="username" id="username" ref={usernameRef} className="form-input" required />
+                </div>
+                <div className="form-label">
+                    <label htmlFor="email">Email</label>
+                    <input type="email" name="email" id="email" ref={emailRef} className="form-input" required />
                 </div>
                 <div className="form-label">
                     <label htmlFor="password">Senha</label>

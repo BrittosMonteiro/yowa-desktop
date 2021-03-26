@@ -1,11 +1,16 @@
-.header{
+.header, .headerPublic{
     display: flex;
     flex-direction: row;
     width: 100%;
     align-items: center;
     justify-content: space-between;
+}
+.header{
     padding-right: 15px;
     background-color: var(--bordo);
+}
+.headerPublic{
+    padding: 15px;
 }
 .img-area{
     width: 54px;

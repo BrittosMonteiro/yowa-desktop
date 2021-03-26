@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect, Route } from "react-router";
+import HeaderPublic from "../Components/HeaderPublic";
 import { useAuth } from "../contexts/AuthContext";
 
 function PrivateRoute({ component: Component, ...rest }){
@@ -13,6 +14,7 @@ function PrivateRoute({ component: Component, ...rest }){
         !currentUser ? (
                 <div className="app">
                     <div className="main">
+                        <HeaderPublic />
                         <Component {...props} />
                     </div>
                 </div>
