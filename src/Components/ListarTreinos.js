@@ -19,7 +19,7 @@ function ListarTreinos(props) {
     
     async function getLimitedTreinos(){
         await listaHistorico
-        // .orderBy('createdAt', 'desc')
+        .orderBy('createdAt', 'desc')
         .where('key_usuario', '==', uid)
         .limit(3)
         .onSnapshot((querySnapshot) => {
@@ -37,7 +37,7 @@ function ListarTreinos(props) {
 
     async function getAllTreinos(){
         await listaHistorico
-        // .orderBy('createdAt', 'desc')
+        .orderBy('createdAt', 'desc')
         .where('key_usuario', '==', uid)
         .onSnapshot((querySnapshot) => {
             const listaHistorico = [];
