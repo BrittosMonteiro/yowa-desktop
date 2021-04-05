@@ -23,6 +23,8 @@
 .user-header{
     font-weight: 600;
     color: #eee;
+    display: flex;
+    align-items: center;
 }
 
 .suspended-menu{

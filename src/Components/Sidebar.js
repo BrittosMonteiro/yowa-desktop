@@ -9,7 +9,6 @@ import {FaDumbbell} from 'react-icons/fa'
 import {RiFileListFill} from 'react-icons/ri'
 import {RiUser5Fill} from 'react-icons/ri'
 import {RiSettings2Fill} from 'react-icons/ri'
-import {FaSignOutAlt} from 'react-icons/fa'
 
 class Sidebar extends React.Component{
     render() {
@@ -45,12 +44,6 @@ class Sidebar extends React.Component{
                             <RiSettings2Fill style={{fontSize: '24px', color: '#eee'}}/>
                         </Link>
                         <span className="sidebar-toolTip">Configurações</span>
-                    </li>
-                    <li className="list-item">
-                        <Link to="/logout" className="item-link">
-                            <FaSignOutAlt style={{fontSize: '24px', color: '#eee'}}/>
-                        </Link>
-                        <span className="sidebar-toolTip">Sair</span>
                     </li>
                 </ol>
             </nav>

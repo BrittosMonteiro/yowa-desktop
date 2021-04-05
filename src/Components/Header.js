@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import '../css/header.css'
 import logo from '../assets/icon/menu.png'
 import { Link } from 'react-router-dom';
-import {WiDayCloudy} from 'react-icons/wi'
 import { useAuth } from '../contexts/AuthContext'
 import firebase from '../js/Firestore'
+import {WiDayCloudy} from 'react-icons/wi'
+import {FaSignOutAlt} from 'react-icons/fa'
 
 function  Header(){
     
-    let lon, lat, now, city, max, min, feel, humi, mainDesc
+    let lon, lat, now
+    // let city, max, min, feel, humi, mainDesc
     let w = window.innerWidth
 
     const { logout, currentUser } = useAuth()
@@ -124,7 +126,7 @@ function  Header(){
             <img src={logo} alt="" title="" id="logo" onClick={() => openSuspendeMenu()} onMouseOver={() => openSuspendeMenu()} />
         </div>
         <div className="temperatura">{temperatura}ºC&nbsp;<WiDayCloudy style={{color: '#eee', fontSize: '32px'}}/></div>
-        <span className="user-header" onClick={logout}>Olá, {username}</span>
+        <span className="user-header">Olá, {username}&nbsp;|&nbsp;<FaSignOutAlt title="Sair" style={{cursor: 'pointer'}} onClick={logout}/></span>
     </header>
     )
 }

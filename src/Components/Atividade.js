@@ -18,13 +18,12 @@ function Atividade(){
 
     const descricao = firebase.firestore().collection('descricao')
     const historico = firebase.firestore().collection('historico')
+    const treino = firebase.firestore().collection('treino')
 
-    const [listaDescricao, setListaDescricao] = useState([])
     const [itensPendentes, setItensPendentes] = useState([])
     const listaPendentes = []
     const [itensFeitos, setItensFeitos] = useState([])
     const listaFeitos = []
-    const [executar, setExecutar] = useState(false);
     
     const [segundo, setSegundo] = useState(0)
     const [minuto, setMinuto] = useState(0)
@@ -47,14 +46,9 @@ function Atividade(){
                 }
                 items.push({...doc.data(), key: doc.id})
             })
-            setListaDescricao(items)
             setItensPendentes(pendentes)
             setItensFeitos(feitos)
         })
-    }
-
-    function executarAtividade(){
-        setExecutar(!executar)
     }
 
     async function statusItem(item, status, key) {
@@ -89,6 +83,7 @@ function Atividade(){
             key_usuario: uid,
             local: 'Local teste',
             nome_treino: nome_atividade,
+            id_atividade: id_atividade,
             pendentes: listaPendentes,
             tempo_treino: `${hora}:${minuto < 10 ? '0'+minuto : minuto}:${segundo < 10? '0'+segundo : segundo}`
         }).then(() => {
@@ -103,9 +98,22 @@ function Atividade(){
                     }
                 })
             })
+            
+            treino
+            .doc(id_atividade)
+            .get()
+            .then((item) => {
+                treino
+                .doc(id_atividade)
+                .update({
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    frequencia: item.data().frequencia+1,
+                })
+            })
+
             history.push('/')
         }).catch((err) => {
-            alert(err)
+            console.log(err)
         }).finally(() => {
             descricao
             .where('key_treino', '==', id_atividade)
@@ -156,9 +164,6 @@ function Atividade(){
                 <h1 className="content-title">
                     Tempo - {hora}:{minuto < 10 ? '0'+minuto : minuto}:{segundo < 10? '0'+segundo : segundo}
                 </h1>
-                {/* <button className="btn" onClick={e => executarAtividade()}>
-                    {executar === false ? 'Iniciar' : 'Finalizar'}
-                </button> */}
                 <button className="btn" onClick={() => addHistorico()}>
                     Finalizar
                 </button>
@@ -194,7 +199,7 @@ function Atividade(){
                         </ol>
                     </>
                 :
-                    <span class="content-subtitle">Você concluiu todos os exercícios</span>
+                    <span className="content-subtitle">Você concluiu todos os exercícios</span>
                 }
             </section>
             <section className="section-block column">
@@ -226,7 +231,7 @@ function Atividade(){
                     </ol>
                 </>
                 :
-                    <span class="content-subtitle">Você ainda não concluiu nenhum exercício ;(</span>
+                    <span className="content-subtitle">Você ainda não concluiu nenhum exercício ;(</span>
                 }
             </section>
         </section>

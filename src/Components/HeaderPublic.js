@@ -1,7 +1,6 @@
 import React from 'react';
 import '../css/header.css'
 import logo_branco from '../assets/icon/menu.png'
-import logo_bordo from '../assets/icon/menu_bordo.png'
 
 function  HeaderPublic(){
     return(

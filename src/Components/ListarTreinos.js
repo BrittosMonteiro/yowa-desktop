@@ -10,21 +10,22 @@ import { useAuth } from '../contexts/AuthContext'
 
 function ListarTreinos(props) {
 
+    
     const [historico, setHistorico] = useState([])
     const [historicoLimitado, setHistoricoLimitado] = useState([])
     const { currentUser } = useAuth()
     const uid = currentUser.uid
-
-    const listaHistorico = firebase.firestore().collection('historico')
     
-    async function getLimitedTreinos(){
-        await listaHistorico
+    const listaHistorico = firebase.firestore().collection('historico')
+    const treinoDB = firebase.firestore().collection('treino')
+    
+    function getLimitedTreinos(){
+        listaHistorico
         .orderBy('createdAt', 'desc')
         .where('key_usuario', '==', uid)
         .limit(3)
         .onSnapshot((querySnapshot) => {
             const listaHistorico = [];
-
             querySnapshot.forEach((documentSnapshot) => {
             listaHistorico.push({
                 ...documentSnapshot.data(),
@@ -35,8 +36,8 @@ function ListarTreinos(props) {
         });
     }
 
-    async function getAllTreinos(){
-        await listaHistorico
+    function getAllTreinos(){
+        listaHistorico
         .orderBy('createdAt', 'desc')
         .where('key_usuario', '==', uid)
         .onSnapshot((querySnapshot) => {
@@ -51,14 +52,27 @@ function ListarTreinos(props) {
             });
 
             setHistorico(listaHistorico);
-            // setTotal(listaHistorico.length);
-            // setLoading(false);
         });
     }
 
-    async function deleteActivity(e, idItem){
+    function deleteActivity(e, idItem, idAtividade){
         e.preventDefault();
-        listaHistorico.doc(idItem).delete()
+        listaHistorico
+        .doc(idItem)
+        .delete()
+        .then(() => {
+            treinoDB
+            .doc(idAtividade)
+            .get()
+            .then((item) => {
+                treinoDB
+                .doc(idAtividade)
+                .update({
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    frequencia: item.data().frequencia-1,
+                })
+            })
+        })
     }
 
     useEffect(() => {
@@ -69,7 +83,11 @@ function ListarTreinos(props) {
     return(
     <React.Fragment>
         <div className="content-top">
-            <h2 className="content-title">{props.title}</h2>
+            {(historicoLimitado.length > 0 || historico.length > 0) ?
+                <h2 className="content-title">{props.title}</h2>
+            :
+                <h2 className="content-title">Você ainda não treinou</h2>
+            }
             {props.showButton === 'true' ?
             <Link to="/historico">
                 <button className="btn btn-ver-mais">+Histórico</button>
@@ -127,7 +145,7 @@ function ListarTreinos(props) {
                             <Link to={"/resumo-treino/"+item.key+"/"+item.nome_treino}>
                                 <MdRemoveRedEye style={{fontSize: '20px', marginLeft: '10px', cursor: 'pointer'}} />
                             </Link>
-                            <RiDeleteBin5Fill style={{fontSize: '20px', marginLeft: '10px', cursor: 'pointer'}} onClick={e => deleteActivity(e, item.key)}/>
+                            <RiDeleteBin5Fill style={{fontSize: '20px', marginLeft: '10px', cursor: 'pointer'}} onClick={e => deleteActivity(e, item.key, item.id_atividade)}/>
                             </div>
                         </div>
                     </li>

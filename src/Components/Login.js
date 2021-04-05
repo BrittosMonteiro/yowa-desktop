@@ -7,7 +7,7 @@ function Login() {
 
     const userRef = useRef();
     const passRef = useRef();
-    const { login, currentUser } = useAuth();
+    const { login } = useAuth();
     const [error, setError] = useState()
     const [loading, setLoading] = useState(false)
     const [display, setDisplay] = useState('none')
