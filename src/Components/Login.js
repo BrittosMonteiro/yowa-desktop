@@ -17,11 +17,10 @@ function Login() {
         event.preventDefault()
 
         try{
-            setError('')
             setLoading(true)
             await login(userRef.current.value, passRef.current.value)
             .then(() => {
-                history.push('/login')
+                return history.push('/')
             })
         } catch {
             setDisplay('flex')

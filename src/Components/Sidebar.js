@@ -9,6 +9,7 @@ import {FaDumbbell} from 'react-icons/fa'
 import {RiFileListFill} from 'react-icons/ri'
 import {RiUser5Fill} from 'react-icons/ri'
 import {RiSettings2Fill} from 'react-icons/ri'
+import {BsChatSquareDotsFill} from 'react-icons/bs'
 
 class Sidebar extends React.Component{
     render() {
@@ -39,6 +40,12 @@ class Sidebar extends React.Component{
                         </Link>
                         <span className="sidebar-toolTip">Perfil</span>
                     </li>
+                    {/* <li className="list-item">
+                        <Link to="/mensagens" className="item-link">
+                            <BsChatSquareDotsFill style={{fontSize: '24px', color: '#eee'}}/>
+                        </Link>
+                        <span className="sidebar-toolTip">Mensagens</span>
+                    </li> */}
                     <li className="list-item">
                         <Link to="/configuracoes" className="item-link">
                             <RiSettings2Fill style={{fontSize: '24px', color: '#eee'}}/>

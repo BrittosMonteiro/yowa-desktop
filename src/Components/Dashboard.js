@@ -15,6 +15,8 @@ function Dashboard() {
 
     const { currentUser } = useAuth()
     const uid = currentUser.uid
+
+    document.title = 'Yowa! | Dashboard'
     
     const [peso, setPeso] = useState([])
     const [variacao, setVariacao] = useState('');

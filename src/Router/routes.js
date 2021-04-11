@@ -1,7 +1,4 @@
 import React from "react";
-import {
-  Route,
-} from "react-router-dom";
 
 import PrivateRoute from '../Router/PrivateRoute'
 import PublicRoute from '../Router/PublicRoutes'
@@ -14,6 +11,8 @@ import ResumoTreino from '../Components/ResumoTreino'
 import VisualizarAtividade from "../Components/VisualizarAtividade"
 import Exercicios from '../Components/Exercicios'
 import Atividade from '../Components/Atividade'
+import Mensagens from '../Components/Mensagens'
+import Usuario from '../Components/Usuario'
 import Login from '../Components/Login'
 import Signup from '../Components/Signup'
 import PassRecovery from "../Components/PassRecovery";
@@ -31,6 +30,8 @@ class Routes extends React.Component{
           <PrivateRoute path="/visualizarAtividade/:id_atividade/:nome_atividade" component={VisualizarAtividade}/>
           <PrivateRoute path="/exercicios/:id_atividade/:nome_atividade" component={Exercicios}/>
           <PrivateRoute path="/atividade/:id_atividade/:nome_atividade" component={Atividade}/>
+          <PrivateRoute path="/mensagens" component={Mensagens}/>
+          <PrivateRoute path="/usuario/:id_usuario" component={Usuario}/>
           <PublicRoute path="/login" component={Login}/>
           <PublicRoute path="/password-recovery" component={PassRecovery}/>
           <PublicRoute path="/signup" component={Signup}/>

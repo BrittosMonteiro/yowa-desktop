@@ -62,9 +62,6 @@ function Treinos(){
         <section className="section">
             <div className="content-top">
                 <h2 className="content-title">Treinos</h2>
-                {/* <Link to="/treinos">
-                    <button className="btn btn-criar-treino">+Criar treino</button>
-                </Link> */}
             </div>
         </section>
         <section className="section row">

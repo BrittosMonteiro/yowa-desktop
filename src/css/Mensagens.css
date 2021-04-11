@@ -1,0 +1,17 @@
+.list{
+    display: flex;
+    flex-direction: column;
+}
+.list-item-default{
+    margin: 10px 0;
+    padding: 7px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid var(--bordo);
+    transition: all 0.4s;
+}
+.list-item-default:hover{
+    background-color: var(--bordo);
+    border-color: #eee;
+}
