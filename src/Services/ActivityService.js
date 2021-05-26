@@ -3,10 +3,13 @@ import firebase from '../js/Firestore'
 const activityDB = firebase.firestore().collection('activity')
 const activityList = [];
 
-function createActivity(name){
-    if(name){
+function createActivity(key, name){
+    if(key && name){
         activityDB.add({
-            activity_name: name
+            activity_name: name,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            frequency: 0,
+            key_user: key,
         })
         .then(() => {
             console.log('Cadastrado')
@@ -18,7 +21,7 @@ function createActivity(name){
 }
 
 function readActivity(){
-
+    
 }
 
 function updateActivity(key, name){
@@ -26,7 +29,8 @@ function updateActivity(key, name){
         activityDB
         .doc(key)
         .update({
-            activity_name: name
+            activity_name: name,
+            updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
         })
         .then(() => {
             console.log('Atualizado!')
