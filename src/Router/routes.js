@@ -2,7 +2,7 @@ import React from "react";
 
 import PrivateRoute from '../Router/PrivateRoute'
 import PublicRoute from '../Router/PublicRoutes'
-import Dashboard from '../Components/Dashboard'
+// import Dashboard from '../Components/Dashboard'
 import Treinos from '../Components/Treinos'
 import Historico from '../Components/Historico'
 import Perfil from '../Components/Perfil'
@@ -17,11 +17,22 @@ import Login from '../Components/Login'
 import Signup from '../Components/Signup'
 import PassRecovery from "../Components/PassRecovery";
 
+import Dashboard from '../View/Dashboard'
+import Activity from '../View/Activity'
+import Exercise from '../View/Exercise'
+import History from '../View/History'
+import Profile from '../View/Profile'
+
 class Routes extends React.Component{
     render(){
       return(
         <>
           <PrivateRoute exact path="/" component={Dashboard}/>
+          <PrivateRoute path="/activity" component={Activity}/>
+          <PrivateRoute path="/exercise" component={Exercise}/>
+          <PrivateRoute path="/history" component={History}/>
+          <PrivateRoute path="/profile" component={Profile}/>
+          {/* */}
           <PrivateRoute path="/treinos" component={Treinos}/>
           <PrivateRoute path="/historico" component={Historico}/>
           <PrivateRoute path="/perfil" component={Perfil}/>
