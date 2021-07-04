@@ -3,7 +3,9 @@ import React from 'react';
 function Exercise() {
     return(
         <React.Fragment>
-            Exercícios
+            <h1 className="content-title">
+                Exercícios
+            </h1>
         </React.Fragment>
     )
 }

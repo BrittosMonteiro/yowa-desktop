@@ -21,25 +21,23 @@ import Exercise from '../View/Exercise'
 import History from '../View/History'
 import Profile from '../View/Profile'
 import Settings from '../View/Settings'
+import Activityview from "../View/Activityview";
+import Activityreview from "../View/Activityreview";
 
 class Routes extends React.Component{
     render(){
       return(
         <>
+          {/* Rotas privadas */}
           <PrivateRoute exact path="/" component={Dashboard}/>
           <PrivateRoute path="/activity" component={Activity}/>
-          <PrivateRoute path="/exercise" component={Exercise}/>
+          <PrivateRoute path="/activity-view/:activity_id/:activity_name" component={Activityview}/>
+          <PrivateRoute path="/activity-review/:activity_id/:activity_name" component={Activityreview}/>
+          <PrivateRoute path="/exercise/:activity_id/:activity_name" component={Exercise}/>
           <PrivateRoute path="/history" component={History}/>
           <PrivateRoute path="/profile" component={Profile}/>
-          {/* */}
-          <PrivateRoute path="/treinos" component={Treinos}/>
-          <PrivateRoute path="/historico" component={Historico}/>
-          <PrivateRoute path="/perfil" component={Perfil}/>
           <PrivateRoute path="/settings" component={Settings}/>
-          <PrivateRoute path="/resumo-treino/:id_atividade/:nome_atividade" component={ResumoTreino}/>
-          <PrivateRoute path="/visualizarAtividade/:id_atividade/:nome_atividade" component={VisualizarAtividade}/>
-          <PrivateRoute path="/exercicios/:id_atividade/:nome_atividade" component={Exercicios}/>
-          <PrivateRoute path="/atividade/:id_atividade/:nome_atividade" component={Atividade}/>
+          {/*  Rotas públicas */}
           <PublicRoute path="/login" component={Login}/>
           <PublicRoute path="/password-recovery" component={PassRecovery}/>
           <PublicRoute path="/signup" component={Signup}/>

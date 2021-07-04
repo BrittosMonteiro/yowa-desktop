@@ -4,12 +4,15 @@ import {
 } from "react-router-dom";
 
 import '../css/sidebar.css'
-import {RiArtboardFill} from 'react-icons/ri'
 import {FaDumbbell} from 'react-icons/fa'
 import {RiFileListFill} from 'react-icons/ri'
 import {RiUser5Fill} from 'react-icons/ri'
 import {RiSettings2Fill} from 'react-icons/ri'
 import {BsChatSquareDotsFill} from 'react-icons/bs'
+import { Monitor } from 'react-feather';
+import { List } from 'react-feather';
+import { User } from 'react-feather';
+import { Settings } from 'react-feather';
 
 class Sidebar extends React.Component{
     render() {
@@ -19,7 +22,7 @@ class Sidebar extends React.Component{
                     <ol className="nav-list">
                         <li className="list-item">
                             <Link to="/" className="item-link">
-                                <RiArtboardFill style={{fontSize: '24px', color: '#eee'}}/>
+                                <Monitor size={24}/>
                             </Link>
                             <span className="sidebar-toolTip">Dashboard</span>
                         </li>
@@ -31,13 +34,13 @@ class Sidebar extends React.Component{
                         </li>
                         <li className="list-item">
                             <Link to="/history" className="item-link">
-                                <RiFileListFill style={{fontSize: '24px', color: '#eee'}}/>
+                                <List size={24}/>
                             </Link>
                             <span className="sidebar-toolTip">Histórico</span>
                         </li>
                         <li className="list-item">
                             <Link to="/profile" className="item-link">
-                                <RiUser5Fill style={{fontSize: '24px', color: '#eee'}}/>
+                                <User size={24}/>
                             </Link>
                             <span className="sidebar-toolTip">Perfil</span>
                         </li>
@@ -49,7 +52,7 @@ class Sidebar extends React.Component{
                         </li> */}
                         <li className="list-item">
                             <Link to="/settings" className="item-link">
-                                <RiSettings2Fill style={{fontSize: '24px', color: '#eee'}}/>
+                                <Settings size={24}/>
                             </Link>
                             <span className="sidebar-toolTip">Configurações</span>
                         </li>
