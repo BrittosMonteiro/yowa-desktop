@@ -5,7 +5,6 @@ import {
 
 import Routes from "./Router/routes";
 
-import './App.css';
 import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {

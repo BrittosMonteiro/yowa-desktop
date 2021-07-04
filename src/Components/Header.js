@@ -52,7 +52,7 @@ function  Header(){
             })
             .then((data) => {
 
-                // city = data.name
+                // console.log(data.name)
                 
                 // max = data.main.temp_max
                 // min = data.main.temp_min

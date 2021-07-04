@@ -5,6 +5,8 @@ import '../css/default.css'
 import '../css/Treinos.css'
 import { useAuth } from '../contexts/AuthContext'
 
+import TreinoService from '../Services/TreinoService'
+
 import {MdRemoveRedEye} from 'react-icons/md'
 import {RiDeleteBin5Fill} from 'react-icons/ri'
 
@@ -14,21 +16,21 @@ function Treinos(){
     const [nomeTreino, setNomeTreino] = useState('')
     const { currentUser } = useAuth()
     const uid = currentUser.uid
-    
-    const listarTreinos = firebase.firestore().collection('treino')
 
-    function getTreinos() {
-        listarTreinos
-        // .orderBy('createdAt', 'desc')
+    const { treinoDB, createTreino, deleteTreino } = TreinoService
+    
+    async function getTreinos() {
+        treinoDB
+        .orderBy('createdAt', 'desc')
         .where('key_usuario', '==', uid)
         .onSnapshot((querySnapshot) => {
             const listaTreinos = [];
 
             querySnapshot.forEach((documentSnapshot) => {
-            listaTreinos.push({
-                ...documentSnapshot.data(),
-                key: documentSnapshot.id,
-            });
+                listaTreinos.push({
+                    ...documentSnapshot.data(),
+                    key: documentSnapshot.id,
+                });
             });
 
             setTreinos(listaTreinos);
@@ -36,26 +38,22 @@ function Treinos(){
         });
     }
 
-    useEffect(() => {
-        getTreinos();
-    }, [])
-
-    async function createActivity(e) {
+    async function create(e) {
         e.preventDefault()
         if(nomeTreino !== '' && nomeTreino !== ' ' && nomeTreino != null){
-            await listarTreinos.add({
-            nome_treino: nomeTreino,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-            key_usuario: uid,
-            });
+            await createTreino(nomeTreino, firebase.firestore.FieldValue.serverTimestamp(), uid)
             setNomeTreino('')
         }
     }
 
-    async function deleteActivity(e, idItem){
-        e.preventDefault();
-        listarTreinos.doc(idItem).delete()
+    async function del(e, id_item){
+        e.preventDefault()
+        deleteTreino(id_item)
     }
+
+    useEffect(() => {
+        getTreinos();
+    }, [])
 
     return (
         <React.Fragment>
@@ -71,7 +69,7 @@ function Treinos(){
                 </h1>
                 <form className="form">
                     <input type="text" className="novoTreino" name="novoTreino" placeholder="Dê um nome para seu treino" value={nomeTreino} onChange={e => setNomeTreino(e.target.value)} />
-                    <button className="btn" onClick={e => createActivity(e)}>Adicionar</button>
+                    <button className="btn" onClick={e => create(e)}>Adicionar</button>
                 </form>
             </section>
             <section className="section-block column">
@@ -89,7 +87,7 @@ function Treinos(){
                                     <RiPlayListAddLine style={{fontSize: '20px'}}/>
                                 </Link> */}
                                 
-                                <RiDeleteBin5Fill style={{fontSize: '20px', marginLeft: '10px', cursor: 'pointer'}} onClick={e => deleteActivity(e, item.key)} />
+                                <RiDeleteBin5Fill style={{fontSize: '20px', marginLeft: '10px', cursor: 'pointer'}} onClick={e => del(e, item.key)} />
                             </div>
                         </li>
                         )}

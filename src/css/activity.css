@@ -1,0 +1,26 @@
+.form{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.input{
+    padding: 5px 0;
+    background-color: transparent;
+    width: 100%;
+    max-width: 300px;
+    border-bottom: 2px solid var(--invisible-blue);
+    transition: all 0.4s ease;
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 5px;
+}
+.input:focus{
+    border-bottom: 2px solid var(--invisible-pink);
+}
+.input::placeholder{
+    font-style: italic;
+    font-weight: 600;
+    color: var(--input-gray);
+}
